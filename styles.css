@@ -124,7 +124,7 @@ h3 {
 
 .summary {
   display: grid;
-  grid-template-columns: repeat(3, minmax(108px, 1fr));
+  grid-template-columns: repeat(4, minmax(96px, 1fr));
   gap: 10px;
 }
 
@@ -178,8 +178,68 @@ label {
   align-items: start;
 }
 
+.side-col {
+  display: grid;
+  gap: 16px;
+}
+
 .panel {
   padding: 14px;
+}
+
+.start-panel {
+  border-color: rgba(49, 95, 134, 0.45);
+}
+
+.form-hint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.form-hint.ok {
+  color: var(--green);
+}
+
+.form-hint.warn {
+  color: var(--red);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.session-box {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+  border-top: 1px dashed var(--line);
+  padding-top: 12px;
+}
+
+.session-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.progress {
+  height: 8px;
+  border-radius: 999px;
+  background: #e7eaee;
+  overflow: hidden;
+}
+
+.progress i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--green), var(--blue));
+  transition: width 0.25s ease;
 }
 
 .game-form {
@@ -242,7 +302,8 @@ label {
   display: block;
 }
 
-.stale-ribbon {
+.stale-ribbon,
+.session-ribbon {
   position: absolute;
   right: 8px;
   bottom: 8px;
@@ -252,6 +313,17 @@ label {
   padding: 6px 8px;
   font-size: 12px;
   font-weight: 900;
+}
+
+.session-ribbon {
+  right: auto;
+  left: 8px;
+  bottom: 8px;
+  background: rgba(57, 116, 91, 0.92);
+}
+
+.game-card.in-session {
+  border-color: var(--green);
 }
 
 .game-body {
@@ -313,6 +385,22 @@ label {
   gap: 10px;
 }
 
+.review-banner {
+  display: grid;
+  gap: 6px;
+  border: 1px solid rgba(57, 116, 91, 0.45);
+  border-radius: 8px;
+  background: rgba(57, 116, 91, 0.08);
+  padding: 10px 12px;
+  font-size: 13px;
+}
+
+.review-banner span {
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 12px;
+}
+
 .rule-section {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -335,6 +423,7 @@ label {
 .rule-list li {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 8px;
   border-bottom: 1px solid #eef0f2;
   padding-bottom: 7px;
@@ -347,11 +436,83 @@ label {
   padding-bottom: 0;
 }
 
-.rule-list button {
+.rule-text {
+  flex: 1 1 auto;
+}
+
+.rule-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+.rule-list li.mastered .rule-text {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.confirm-check {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--green);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.confirm-check input {
+  width: auto;
+  accent-color: var(--green);
+}
+
+.link-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  color: var(--yellow);
+  font-weight: 800;
+}
+
+.rule-list button[title="删除"] {
   width: 30px;
   height: 30px;
   padding: 0;
   flex: 0 0 auto;
+}
+
+.records-panel {
+  margin-top: 16px;
+}
+
+.record-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.record-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px 12px;
+}
+
+.record-date strong {
+  font-size: 13px;
+  color: var(--blue);
+}
+
+.record-main {
+  display: grid;
+  gap: 4px;
 }
 
 .add-rule {
@@ -380,6 +541,11 @@ label {
     grid-template-columns: 1fr;
   }
 
+  .side-col {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
   .detail-panel {
     position: static;
   }
@@ -390,7 +556,11 @@ label {
     width: min(100vw - 20px, 1440px);
   }
 
-  .summary,
+  .summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .side-col,
   .split {
     grid-template-columns: 1fr;
   }
