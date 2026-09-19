@@ -124,7 +124,7 @@ h3 {
 
 .summary {
   display: grid;
-  grid-template-columns: repeat(3, minmax(108px, 1fr));
+  grid-template-columns: repeat(4, minmax(96px, 1fr));
   gap: 10px;
 }
 
@@ -254,6 +254,18 @@ label {
   font-weight: 900;
 }
 
+.session-ribbon {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  border-radius: 999px;
+  background: var(--green);
+  color: #fff;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
 .game-body {
   padding: 11px;
 }
@@ -334,7 +346,7 @@ label {
 
 .rule-list li {
   display: flex;
-  justify-content: space-between;
+  align-items: flex-start;
   gap: 8px;
   border-bottom: 1px solid #eef0f2;
   padding-bottom: 7px;
@@ -345,6 +357,205 @@ label {
 .rule-list li:last-child {
   border-bottom: 0;
   padding-bottom: 0;
+}
+
+.rule-list .rule-text {
+  flex: 1 1 auto;
+}
+
+.rule-list li.confirmed .rule-text {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.confirm-check {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 3px;
+  margin-top: 1px;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.confirm-check input {
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  accent-color: var(--green);
+}
+
+.start-box,
+.session-box {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f4f7f5;
+  padding: 11px;
+  display: grid;
+  gap: 8px;
+}
+
+.session-box {
+  background: rgba(57, 116, 91, 0.08);
+  border-color: rgba(57, 116, 91, 0.35);
+}
+
+.start-box h3,
+.session-box h3 {
+  margin: 0;
+}
+
+.session-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.box-desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.start-hint {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.start-hint.ok {
+  color: var(--green);
+}
+
+.start-hint.err {
+  color: var(--red);
+}
+
+.progress {
+  overflow: hidden;
+  height: 8px;
+  border-radius: 999px;
+  background: #dfe5e1;
+}
+
+.progress i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--green);
+  transition: width 0.2s ease;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: var(--line);
+}
+
+.notice-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid rgba(213, 162, 61, 0.5);
+  border-radius: 8px;
+  background: rgba(213, 162, 61, 0.12);
+  padding: 9px 11px;
+  color: #8a6720;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.notice-banner button {
+  flex: 0 0 auto;
+  padding: 6px 10px;
+}
+
+button.danger {
+  border-color: rgba(179, 72, 72, 0.45);
+  color: var(--red);
+}
+
+button.danger:hover {
+  border-color: var(--red);
+}
+
+.play-log {
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+.play-log-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 260px;
+  overflow: auto;
+}
+
+.play-log-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+.play-log-list .log-name {
+  flex: 1 1 auto;
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.play-log-list .log-players {
+  flex: 0 0 auto;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.play-log-list time {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 12px);
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  padding: 11px 20px;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 20;
+  max-width: calc(100vw - 32px);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .rule-list button {
@@ -392,6 +603,6 @@ label {
 
   .summary,
   .split {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
